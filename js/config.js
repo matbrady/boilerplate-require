@@ -12,9 +12,9 @@
 		 * - waitSeconds : Timeout for loading scripts
 		 */ 
 
-		enforceDefine: true,
+		// enforceDefine: true,
 
-		waitSeconds: 200,
+		// waitSeconds: 200,
 
 		
 		/** 
