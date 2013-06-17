@@ -1,0 +1,15 @@
+{
+  "name": "Boilerplate",
+  "version": "0.0.0",
+  "description": "Scaffold for RequireJS projects",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "Threespot",
+  "license": "BSD",
+  "devDependencies": {
+    "grunt": "~0.4.1"
+  }
+}
