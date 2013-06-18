@@ -60,7 +60,6 @@
    *
    * @require
    *   detection : non-jquery id/class detection
-   *
    */
   define(['poly/detection'], function( detection ) {
 
