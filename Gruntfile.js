@@ -15,34 +15,34 @@ module.exports = function( grunt ) {
 		},
 
 		requirejs: {
-	    compile: {
-	      options: {
-	      	name: "main",
-	        baseUrl: "js",
-	        paths: {
-	        	"poly": "polyfills"
-	        },
-	        wrap: true,
-	        mainConfigFile: "js/main.js",
-	        out: "<%= grunt.config.get('dist_dir') %>/js/main.js"
-	      }
-	    }
-	  },
+			compile: {
+				options: {
+					name: "main",
+					baseUrl: "js",
+					paths: {
+						"poly": "polyfills"
+					},
+					wrap: true,
+					mainConfigFile: "js/main.js",
+					out: "<%= grunt.config.get('dist_dir') %>/js/main.js"
+				}
+			}
+		},
 
-	  // wipes the dist 
-	  clean: ["dist"],
+		// wipes the dist 
+		clean: ["dist"],
 
-	  copy: {
-	  	dist: {
-	  		files: [
-	  			{ 
-	  				expand: true,
-	  				src: ['index.html', 'css/*', 'js/lib/require.js'], 
-	  				dest: '<%= grunt.config.get("dist_dir") %>'
-	  			}
-	  		]
-	  	}
-	  }
+		copy: {
+			dist: {
+				files: [
+					{ 
+						expand: true,
+						src: ['index.html', 'css/*', 'js/lib/require.js'], 
+						dest: '<%= grunt.config.get("dist_dir") %>'
+					}
+				]
+			}
+		}
 
 	});
 	
