@@ -9,7 +9,11 @@
   },
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-requirejs": "~0.3.5"
+    "grunt-config": "~0.1.4",
+    "grunt-contrib": "~0.6.0",
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-requirejs": "~0.4.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
