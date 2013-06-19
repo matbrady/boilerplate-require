@@ -1,5 +1,5 @@
 (function() {
-  'strict';
+  'use strict';
 
   /**
    * RequireJS Configuration
