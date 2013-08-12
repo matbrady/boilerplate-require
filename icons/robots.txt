@@ -1,0 +1,10 @@
+# Block all site crawlers by default.
+# Comment out the first disalow line to allow everything later.
+User-Agent: *
+Disallow: /
+Disallow: /admin
+Disallow: /api
+Disallow: /404
+Disallow: /422
+Disallow: /500
+Disallow: /503

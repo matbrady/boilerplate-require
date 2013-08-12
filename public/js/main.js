@@ -71,7 +71,7 @@
         }
         
         require(mods, bootstrap);
-    };
+    }
 
     function bootstrap() {
         var mods = [];

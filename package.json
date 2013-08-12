@@ -3,22 +3,17 @@
   "version": "0.1.0",
   "description": "ERROR: No README.md file found!",
   "main": "js/config.js",
-  "dependencies": {
-    "grunt": "~0.4.1",
-    "grunt-requirejs": "~0.3.5"
-  },
+  "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-config": "~0.1.4",
-    "grunt-contrib": "~0.6.0",
-    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.2",
     "grunt-contrib-copy": "~0.4.1",
-    "grunt-contrib-requirejs": "~0.4.1"
+    "grunt-contrib-clean": "~0.5.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "",
-  "author": "",
+  "repository": "git@github.com:matbrady/boilerplate-require.git",
+  "author": "Threespot",
   "license": "BSD"
 }
