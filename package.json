@@ -12,6 +12,7 @@
     "grunt-contrib-requirejs": "~0.4.1",
     "grunt-usemin": "~0.1.12",
     "grunt-contrib-watch": "~0.5.1",
+    "express": "~3.3.5",
     "grunt-express-server": "~0.4.2",
     "grunt-open": "~0.2.2"
   },
