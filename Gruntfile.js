@@ -94,7 +94,10 @@ module.exports = function( grunt ) {
     watch: {
     	scripts: {
     		files: ['<%= config.app %>js/**/*.js'],
-    		tasks: ['jshint']
+    		tasks: ['jshint'],
+    		options: {
+    			livereload: true
+    		}
     	}
     }
 	});
