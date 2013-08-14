@@ -7,7 +7,7 @@
 (function() {
 
   // Sets Global NoCache 
-  REQUIRE_NOCACHE = window.REQUIRE_NOCACHE || false;
+  window.REQUIRE_NOCACHE = window.REQUIRE_NOCACHE || false;
 
   // Name libraries / plugins
   var config = {

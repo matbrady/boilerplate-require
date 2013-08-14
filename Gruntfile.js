@@ -34,33 +34,35 @@ module.exports = function( grunt ) {
         release: {
             options: {
                 name: 'main',
-                baseUrl: '<%= config.app %>/js',
-                mainConfigFile: '<%= config.app %>/js/config.js',
-                // insertRequire: ['main'],
+                baseUrl: 'dist/js',
+                mainConfigFile: 'dist/js/config.js',
+                // optimize: 'none',
+                // include: [
+                //   'components/app'
+                // ],
+                findNestedDependencies: true,
                 paths: {
                     'poly': 'polyfills'
                 },
-                out: 'dist/js/<%= pkg.name %>.js'
+                out: 'dist/js/main.js' || 'dist/js/<%= pkg.name %>.js'
             }
         }
     },
 
-    useminPrepare: {
-        dev: {
-          html: 'app/public/index.html'
-        },
-        build: {
-          html: 'dist/index.html'
+    uglify: {
+      my_target: {
+        files: {
+          'dist/**/*.min.js': ['dist/js/**/*.js']
         }
+      }
+    },
+
+    useminPrepare: {
+        html: ['dist/index.html']
     },
 
     usemin: {
-        dev: {
-          html: ['app/public/index.html']
-        },
-        build: {
-          html: ['dist/index.html']
-        }
+        html: ['dist/index.html']
     },
 
     clean: {
@@ -72,12 +74,11 @@ module.exports = function( grunt ) {
     copy: {
       release: {
         expand: true,
-        src: ['**/*', '!js/**', 'js/lib/**'],
+        src: ['**/*'],
         cwd: '<%= config.app %>',
         dest: 'dist/'
       },
-      rails: {
-      }
+      rails: {}
     },
 
     // grunt-express will serve the files from the folders listed in `bases`
@@ -147,16 +148,21 @@ module.exports = function( grunt ) {
    * Creates a standard build with no influence from any BE
    * asset pipeline
    * - 'clean': clears all content from the config.dist.??? directory
+   * - 'jshint': lints js before creating dist build
    * - 'copy:release':
-   * - 'userminPrepare'   
-   * - 'usemin'
+   * - 'userminPrepare': parses the index file for build comments
+   * - 'usemin': 
+   *      'index.html': replace script tag with optimized scripts
+   *                    removes cache busting reference
    * - 'requiresjs': // BUG?! Forced to call requirejs again because the output file is not being generated
    */
   grunt.registerTask('build', [
-    'clean', 
+    'clean',
+    'jshint',
     'copy:release',
-    'useminPrepare:dev',
-    'usemin:dev', 
-    'requirejs'
+    'useminPrepare',
+    'usemin', 
+    'requirejs:release',
+    'uglify'
   ]);
 };
