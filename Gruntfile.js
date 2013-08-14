@@ -96,9 +96,20 @@ module.exports = function( grunt ) {
     		files: ['<%= config.app %>js/**/*.js'],
     		tasks: ['jshint']
     	}
+    },
+
+    nodemon: {
+      prod: {
+        options: {
+          file: 'app/server.js',
+          args: ['development'],
+          nodeArgs: ['--debug']
+        }
+      }
     }
 	});
 
+    // Confirmed
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
@@ -106,7 +117,11 @@ module.exports = function( grunt ) {
 	grunt.loadNpmTasks('grunt-usemin');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-express-server');
+    grunt.loadNpmTasks('grunt-contrib-sass');
+
+    // Potential
 	grunt.loadNpmTasks('grunt-open');
+    grunt.loadNpmTasks('grunt-nodemon');
 
 	grunt.registerTask('default', [
 		'jslint'

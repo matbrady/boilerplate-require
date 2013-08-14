@@ -24,7 +24,7 @@
 
         if ( detection.has('#main') ) {
             console.log("We've go a MAIN div");
-            // mods.push('common/tabs');
+            mods.push('components/app.js');
         }
 
         require(mods);
