@@ -29,6 +29,8 @@
      */ 
     urlArgs: !!REQUIRE_NOCACHE ? "bust="+(new Date()).getTime() : '',
 
+    baseUrl: "js",
+
     paths: {
       "poly": "polyfills"
       // "backbone": "lib/backbone",
@@ -38,7 +40,6 @@
       // "underscore": "lib/underscore",
       // "usMap": "lib/usMap"
     }
-
   };
 
   // Predefine Require setup, or configure existing library:

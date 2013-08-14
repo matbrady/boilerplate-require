@@ -1,0 +1,34 @@
+// Mixins
+
+// REM Font Size Mixin
+@mixin font-size ( $size: 16 ) {
+  font-size: $size + px;
+  font-size: $size/10 + rem; 
+}
+
+// Boilerplate Helper mixins (https://github.com/h5bp/html5-boilerplate/blob/v4.1.0/doc/css.md)
+@mixin visuallyhidden { 
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+@mixin ir {
+	background-color: transparent;
+	border: 0;
+	overflow: hidden;
+	/* IE 6/7 fallback */
+	*text-indent: -9999px;
+
+	&:before {
+		content: "";
+		display: block;
+		width: 0;
+		height: 150%;
+	}
+}

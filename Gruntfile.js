@@ -9,7 +9,7 @@ module.exports = function( grunt ) {
 
     config: {
 
-        app: 'app/public/',
+        app: 'app/public',
         dist: {
             debug: 'dist/debug',
             release: 'dist/release'
@@ -20,12 +20,12 @@ module.exports = function( grunt ) {
     // VALIDATION
     // Run the application Javascript through JSHint with the defaults.
     jshint: {
-      files: ['<%= config.app%>/js/**/*.js'],
+      files: ['<%= config.app %>/js/**/*.js'],
       options: {
           ignores: [
-            '<%= config.app%>js/polyfills/*',
-            '<%= config.app%>js/vendor/*',
-            '<%= config.app%>js/lib/*'
+            '<%= config.app %>/js/polyfills/*',
+            '<%= config.app %>/js/vendor/*',
+            '<%= config.app %>/js/lib/*'
           ]
       }
     },
@@ -34,8 +34,8 @@ module.exports = function( grunt ) {
         release: {
             options: {
                 name: 'main',
-                baseUrl: '<%= config.app %>js/',
-                mainConfigFile: '<%= config.app %>js/config.js',
+                baseUrl: '<%= config.app %>/js',
+                mainConfigFile: '<%= config.app %>/js/config.js',
                 // insertRequire: ['main'],
                 paths: {
                     'poly': 'polyfills'
@@ -47,10 +47,10 @@ module.exports = function( grunt ) {
 
     useminPrepare: {
         dev: {
-          html: ['app/public/index.html']
+          html: 'app/public/index.html'
         },
         build: {
-          html: ['dist/index.html']
+          html: 'dist/index.html'
         }
     },
 
@@ -103,15 +103,27 @@ module.exports = function( grunt ) {
       }
     },
 
+    sass: {
+      dev: {
+        src: ['<%= config.app %>/styles/*.scss'],
+        dest: '<%= config.app %>/styles/main.css'
+      }
+    },
+
     watch: {
-      all: {
-        files: 'app/public/*',
+      livereload: {
+        files: ['<%= config.app %>/style/main.css'],
         options: {
-          livereload: true
+          livereload: false
         }
+      },
+
+      sass: {
+        files: ['<%= config.app %>/styles/**/*.scss'],
+        tasks: ['sass']
       }
     }
-  });
+  }); 
 
 
   // Registered Tasks =========================================>
@@ -122,7 +134,6 @@ module.exports = function( grunt ) {
   // SERVERS
 
   /** Server - DEV
-   * 
    */
   grunt.registerTask('server', [
     'express',
@@ -144,15 +155,8 @@ module.exports = function( grunt ) {
   grunt.registerTask('build', [
     'clean', 
     'copy:release',
-    'useminPrepare', 
-    'usemin', 
+    'useminPrepare:dev',
+    'usemin:dev', 
     'requirejs'
-  ]);
-
-  /** Build - Rails   
-   * Creates a build for easy integration into a Rails BE
-   */
-  grunt.registerTask('build:rails', [
-    'copy:rails'
   ]);
 };
