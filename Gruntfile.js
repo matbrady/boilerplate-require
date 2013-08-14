@@ -1,5 +1,8 @@
 module.exports = function( grunt ) {
 
+  // Load Grunt tasks declared in the package.json file
+  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+
   grunt.initConfig({
 
     pkg: grunt.file.readJSON('package.json'),
@@ -77,61 +80,38 @@ module.exports = function( grunt ) {
       }
     },
 
+    // grunt-express will serve the files from the folders listed in `bases`
+    // on specified `port` and `hostname`
     express: {
-        dev: {
-            options: {
-                script: 'app/server.js'
-                // background: false, // prevents server from closing
-            }
-        },
-        prod: {
-            options: {
-                script: 'app/server.js',
-                node_env: 'production'
-            }
+      all: {
+        options: {
+          port: '<%= config.port %>',
+          hostname: "0.0.0.0",
+          bases: ['app/public'],
+          server: 'app/server.js',
+          livereload: true
         }
+      }
     },
-
+    
+    // grunt-open will open your browser at the project's URL
     open: {
-        dev: {
-            path: 'http://127.0.0.1:<%= config.port %>',
-            app: 'Google Chrome'
-        }
+      all: {
+        // Gets the port from the connect configuration
+        path: 'http://localhost:<%= express.all.options.port%>',
+        app: 'Google Chrome'
+      }
     },
 
     watch: {
-        // scripts: {
-        //  files: ['<%= config.app %>js/**/*.js'],
-        //  tasks: ['jshint'],
-        //  options: {
-        //      livereload: true
-        //  }
-        // }
-        express: {
-            files: ['app/public/**'],
-            tasks: ['express:dev'],
-            options: {
-                livereload: true,
-                nospawn: true
-            }
+      all: {
+        files: 'app/public/*',
+        options: {
+          livereload: true
         }
+      }
     }
   });
-
-
-  // NPM Tasks ================================================>
-  // Confirmed
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-requirejs');
-  grunt.loadNpmTasks('grunt-usemin');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-express-server');
-  grunt.loadNpmTasks('grunt-contrib-sass');
-
-  // Potential
-  grunt.loadNpmTasks('grunt-open');
 
 
   // Registered Tasks =========================================>
@@ -145,9 +125,9 @@ module.exports = function( grunt ) {
    * 
    */
   grunt.registerTask('server', [
-      'open',
-      'express:dev',
-      'watch'
+    'express',
+    'open',
+    'watch'
   ]); 
 
   // BUILDS
@@ -162,17 +142,17 @@ module.exports = function( grunt ) {
    * - 'requiresjs': // BUG?! Forced to call requirejs again because the output file is not being generated
    */
   grunt.registerTask('build', [
-      'clean', 
-      'copy:release',
-      'useminPrepare', 
-      'usemin', 
-      'requirejs'
+    'clean', 
+    'copy:release',
+    'useminPrepare', 
+    'usemin', 
+    'requirejs'
   ]);
 
   /** Build - Rails   
    * Creates a build for easy integration into a Rails BE
    */
   grunt.registerTask('build:rails', [
-      'copy:rails'
+    'copy:rails'
   ]);
 };
