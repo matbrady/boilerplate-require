@@ -22,6 +22,7 @@ module.exports = function( grunt ) {
             release: 'dist/release'
         },
         port: 3000,
+        // Replicates your config file properties > config.js
         rjs: {
           paths: {
             'poly': 'polyfills',
@@ -57,14 +58,17 @@ module.exports = function( grunt ) {
                 dir: 'dist/js'
             }
         },
-        // Copy dev structure 
+        // Copy dev structure MINIFIED
         release: {
           options: {
               baseUrl: 'app/public/js',
               mainConfigFile: 'app/public/js/config.js',
               modules: [
-                {name: 'main'},
+                {name: 'main'}
                 // compiles app and its dependencies into one file
+                // if you have a portion of you application that has many
+                // dependencies, adding a module will create one file which
+                // will limit the number of file requests
                 // {name: 'components/app'}
               ],
               paths: '<%= config.rjs.paths %>',
@@ -111,7 +115,7 @@ module.exports = function( grunt ) {
     copy: {
       release: {
         expand: true,
-        src: ['**/*'],
+        src: ['**/*', '!js'],
         cwd: '<%= config.app %>',
         dest: 'dist/'
       },
@@ -165,11 +169,12 @@ module.exports = function( grunt ) {
 
 
   // Registered Tasks =========================================>
+
   grunt.registerTask('default', [
       'jslint'
   ]);
 
-  // SERVERS
+  // Servers
 
   /** Server - DEV
    */
@@ -179,7 +184,7 @@ module.exports = function( grunt ) {
     'watch'
   ]); 
 
-  // BUILDS
+  // Builds
 
   /** Build - Standard
    * Creates a standard build with no influence from any BE
@@ -199,7 +204,7 @@ module.exports = function( grunt ) {
     'copy:release',
     'useminPrepare',
     'usemin', 
-    'requirejs:release',
-    'uglify'
+    // 'requirejs:release'
+    // 'uglify'
   ]);
 };

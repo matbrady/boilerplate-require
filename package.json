@@ -2,7 +2,13 @@
   "name": "boilerplate",
   "version": "0.1.0",
   "description": "ERROR: No README.md file found!",
-  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:matbrady/boilerplate-require.git"
+  },
+  "author": "Mat Brady",
+  "license": "BSD",
+  "readmeFilename": "README.md",
   "dependencies": {},
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.2",
@@ -18,11 +24,5 @@
     "express": "~3.3.5",
     "matchdep": "~0.1.2",
     "grunt-contrib-uglify": "~0.2.2"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": "git@github.com:matbrady/boilerplate-require.git",
-  "author": "Mat Brady",
-  "license": "BSD"
+  }
 }
