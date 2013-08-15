@@ -23,6 +23,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "git@github.com:matbrady/boilerplate-require.git",
-  "author": "Threespot",
+  "author": "Mat Brady",
   "license": "BSD"
 }

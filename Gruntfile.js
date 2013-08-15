@@ -1,3 +1,10 @@
+/**
+ * Tasks:
+ * - default
+ * - server
+ * - build
+ */
+
 module.exports = function( grunt ) {
 
   // Load Grunt tasks declared in the package.json file
@@ -14,7 +21,13 @@ module.exports = function( grunt ) {
             debug: 'dist/debug',
             release: 'dist/release'
         },
-        port: 3000
+        port: 3000,
+        rjs: {
+          paths: {
+            'poly': 'polyfills',
+            'jquery': 'lib/jquery'
+          }
+        }
     },
 
     // VALIDATION
@@ -31,21 +44,45 @@ module.exports = function( grunt ) {
     },
 
     requirejs: {
-        release: {
+        // Copy dev strucuture UNMINIFIED
+        debug: {
             options: {
-                name: 'main',
-                baseUrl: 'dist/js',
-                mainConfigFile: 'dist/js/config.js',
-                // optimize: 'none',
-                // include: [
-                //   'components/app'
-                // ],
-                findNestedDependencies: true,
-                paths: {
-                    'poly': 'polyfills'
-                },
-                out: 'dist/js/main.js' || 'dist/js/<%= pkg.name %>.js'
+                baseUrl: 'app/public/js',
+                mainConfigFile: 'app/public/js/config.js',
+                optimize: 'none',
+                modules: [
+                  {name: 'main'},
+                ],
+                paths: '<%= config.rjs.paths %>',
+                dir: 'dist/js'
             }
+        },
+        // Copy dev structure 
+        release: {
+          options: {
+              baseUrl: 'app/public/js',
+              mainConfigFile: 'app/public/js/config.js',
+              modules: [
+                {name: 'main'},
+                // compiles app and its dependencies into one file
+                // {name: 'components/app'}
+              ],
+              paths: '<%= config.rjs.paths %>',
+              dir: 'dist/js'
+          }
+        },
+        // One JS File
+        optimize: {
+          options: {
+              name: 'main',
+              baseUrl: 'app/public/js',
+              mainConfigFile: 'app/public/js/config.js',
+              include: [
+                'components/app'
+              ],
+              paths: '<%= config.rjs.paths %>',
+              out: 'dist/main.js'
+          }
         }
     },
 

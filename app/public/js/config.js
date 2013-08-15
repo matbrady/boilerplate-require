@@ -32,9 +32,9 @@
     baseUrl: "js",
 
     paths: {
-      "poly": "polyfills"
+      "poly": "polyfills",
       // "backbone": "lib/backbone",
-      // "jquery": "lib/jquery",
+      "jquery": "lib/jquery"
       // "raphael": "lib/raphael",
       // "require": "lib/require",
       // "underscore": "lib/underscore",

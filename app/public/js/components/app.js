@@ -1,6 +1,6 @@
-// Application
+// Application - component/app
 
-define('components/app', function(){
+define(['jquery'],  function($){
 	console.log('from the application, not really, but really');
 	return;
 });
